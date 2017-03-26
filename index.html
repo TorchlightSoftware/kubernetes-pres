@@ -1,50 +1,155 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Kubernetes DevOps</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/theme/sky.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        <section>
+          <h1>Kubernetes</h1>
+          <h3>Learn you some devops for great good!</h3>
+          <p>
+            <small>By <a href="http://tlsft.com">Brandon Mason</a> / <a href="http://twitter.com/tlsft">@tlsft</a></small>
+          </p>
+        </section>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+        <section>
+          <h3>So done with VMs.</h3>
+          <img height='400px' src='img/packed-bus.jpg'></img>
+        </section>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        <section>
+          <h3>Containers, yeah!</h3>
+          <img height='400px' class='no-style' src='img/bikers.jpg'></img>
+        </section>
+
+        <section>
+          <h3>Now what?</h3>
+          <img height='400px' class='no-style' src='img/surrounded.jpg'></img>
+        </section>
+
+        <section>
+          <h3>Alright . . .</h3>
+          <ul>
+            <li>Now you've built a lot of small containers.  How do you scale and connect them?</li>
+            <li>Manually assigning containers to a host is tedious and inefficient.</li>
+            <li>You need an orchestrator.</li>
+          </ul>
+        </section>
+
+        <section>
+          <img height='600px' class='no-style' src='https://docs.google.com/drawings/d/1hMNxRuBnKs-tIpoxA8mPJu6poOZFz0eqp9u7Vn4YMiU/pub?w=960&h=720'></img>
+        </section>
+
+        <section>
+          <img height='600px' class='no-style' src='https://docs.google.com/drawings/d/1lsCgEj5BhAI9ZyVIfnfjH9PPRNmN5YOhT8zmCvtBu2E/pub?w=960&h=720'></img>
+        </section>
+
+        <section>
+          <a href="http://blog.ployst.com/development/2015/12/22/letsencrypt-on-kubernetes.html">
+            <img height='560px' class='no-style' src='http://blog.ployst.com/assets/images/letsencrypt-catnames02.png'></img>
+          </a>
+        </section>
+
+        <section>
+          <h4>Proxy Deployment</h4>
+          <script src="https://gist.github.com/bitmage/8dde368dfb65109e7359a457c4300677.js"></script>
+        </section>
+
+        <section>
+          <h4>Proxy Service</h4>
+          <script src="https://gist.github.com/bitmage/8184d56d4670791c0c2fcdae17bc8a2f.js"></script>
+        </section>
+
+        <section>
+          <h3>Hosting</h3>
+          <ul>
+            <li>Use Google Cloud.  Kubernetes is pre-configured.</li>
+            <li>Run static content on Google Storage.</li>
+            <li>Run services in Deployments.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Ingress/Databases</h3>
+          <ul>
+            <li>Put either <a href="http://blog.ployst.com/development/2015/12/22/letsencrypt-on-kubernetes.html">Nginx proxies</a> or <a href="https://kubernetes.io/docs/user-guide/ingress/">Ingress Controllers</a> in front of public services.  Handle SSL termination here.</li>
+            <li>Use VMs for production databases.  Could use <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">StatefulSets</a> when there's more track record.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Container Build/Push</h3>
+          <ul>
+            <li><a href="https://github.com/TorchlightSoftware/docker-gce-build" target="_blank">I use bash scripts.</a></li>
+            <li>Got a better way?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Declarative Infrastructure</h3>
+          <script src="https://gist.github.com/bitmage/b774fdb6166cc6371acd0c03c7fe0050.js"></script>
+        </section>
+
+        <section>
+          <h3>Improvements</h3>
+          <ul>
+            <li>CI/CD?</li>
+            <li>Other suggestions?</li>
+            <li>Questions?</li>
+          </ul>
+        </section>
+
+      </div>
+      <div class='footer'>
+        <a href="pres.tlsft.com/kube">pres.tlsft.com/kube</a>
+        <span>
+          <a href="http://tlsft.com">
+            <img height='40px' src='img/flame.svg'></img>
+          </a>
+          <a href="http://twitter.com/tlsft">@tlsft</a>
+        </span>
+      </div>
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
